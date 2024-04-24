@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MvcExamenValen.Models.Personaje>
+
+@{
+    ViewData["Title"] = "PersonajesSerie";
+    var series = ViewData["SERIES"] as List<string>;
+}
+
+<h1>Personajes por Serie</h1>
+
+<form method="post">
+    <label>Selecciona una Serie</label>
+    <select name="serie">
+        @foreach(string ser in series)
+        {
+            <option value="@ser">@ser</option>
+        }
+    </select>
+    <button class="btn btn-outline-primary">
+        Probar
+    </button>
+</form>
+
+@if(Model != null)
+{
+    <table class="table table-danger">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdPersonaje)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Imagen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Serie)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdPersonaje)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        <img src="@Html.DisplayFor(modelItem => item.Imagen)" style="width:200px;height:200px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Serie)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
